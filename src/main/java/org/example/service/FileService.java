@@ -59,7 +59,7 @@ public class FileService {
             default -> throw new IllegalArgumentException("Неправильный аргумент " + format);
         }
         if (data != null){
-
+            restoreData(data);
         }
     }
 
@@ -77,7 +77,7 @@ public class FileService {
         return mapper.readValue(new File("backup.json"), BackupData.class);
     }
 
-    // === ЛОГИКА YAML ===
+
     private void saveYaml(BackupData data) throws IOException {
         ObjectMapper mapper = new YAMLMapper();
         mapper.registerModule(new JavaTimeModule());
@@ -91,7 +91,7 @@ public class FileService {
         return mapper.readValue(new File("backup.yaml"), BackupData.class);
     }
 
-    // === ЛОГИКА CSV (3 файла) ===
+
     private void saveCsv(BackupData data) throws IOException {
         CsvMapper mapper = new CsvMapper();
         mapper.registerModule(new JavaTimeModule());
@@ -125,9 +125,6 @@ public class FileService {
         CsvSchema schema = mapper.schemaFor(clazz).withHeader();
         return mapper.readerFor(clazz).with(schema).<T>readValues(file).readAll();
     }
-
-
-
 
     private void restoreData(BackupData data) {
         accountRepository.deleteAll();
