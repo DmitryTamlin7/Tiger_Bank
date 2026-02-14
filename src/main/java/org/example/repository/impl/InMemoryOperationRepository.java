@@ -42,8 +42,9 @@ public class InMemoryOperationRepository implements OperationRepository {
         storage.remove(id);
     }
 
+
     @Override
-    public List<Operation> findByAccountId(Long account_id) {
+    public List<Operation> findByBankAccountId(Long account_id) {
         return storage.values().stream()
                 .filter(o -> o.getBankAccountId().equals(account_id))
                 .collect(Collectors.toList());

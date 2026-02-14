@@ -11,5 +11,5 @@ public interface OperationRepository {
     Optional<Operation> findById(Long id);
     List<Operation> findAll();
     void deleteById(Long id);
-    List<Operation> findByAccountId(Long account_id);
+    List<Operation> findByBankAccountId(Long account_id);
 }
