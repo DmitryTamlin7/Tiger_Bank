@@ -1,0 +1,41 @@
+{
+  "categories" : [ {
+    "id" : 1,
+    "operationType" : "EXPENSE",
+    "name" : "Авто"
+  }, {
+    "id" : 2,
+    "operationType" : "INCOME",
+    "name" : "Кофейня"
+  } ],
+  "operations" : [ {
+    "id" : 1,
+    "bankAccountId" : 1,
+    "categoryId" : 2,
+    "operationType" : "INCOME",
+    "amount" : 10000,
+    "date" : [ 2026, 2, 14, 18, 13, 51, 695128000 ],
+    "description" : "Реклама"
+  }, {
+    "id" : 2,
+    "bankAccountId" : 1,
+    "categoryId" : 1,
+    "operationType" : "EXPENSE",
+    "amount" : 100,
+    "date" : [ 2026, 2, 14, 18, 14, 6, 652795000 ],
+    "description" : "саленблок"
+  }, {
+    "id" : 3,
+    "bankAccountId" : 1,
+    "categoryId" : 2,
+    "operationType" : "INCOME",
+    "amount" : 550,
+    "date" : [ 2026, 2, 14, 18, 14, 20, 967624000 ],
+    "description" : "Чаевые"
+  } ],
+  "accounts" : [ {
+    "id" : 1,
+    "name" : "Бизнес",
+    "balance" : 10450
+  } ]
+}

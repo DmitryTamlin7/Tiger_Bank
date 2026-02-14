@@ -41,5 +41,10 @@ public class InMemoryCategoryRepository implements CategoryRepository {
         storage.remove(id);
     }
 
+    @Override
+    public void deleteAll() {
+        storage.clear();
+    }
+
 
 }

@@ -11,4 +11,6 @@ public interface BankAccountRepository {
     Optional<BankAccount> findById(Long id);
     List<BankAccount> findAll();
     void deleteById(Long id);
+    void deleteAll();
+
 }

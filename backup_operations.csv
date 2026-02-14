@@ -1,0 +1,4 @@
+amount,bankAccountId,categoryId,date,description,id,operationType
+10000,1,2,"2026;2;14;18;13;51;695128000",Реклама,1,INCOME
+100,1,1,"2026;2;14;18;14;6;652795000",саленблок,2,EXPENSE
+550,1,2,"2026;2;14;18;14;20;967624000",Чаевые,3,INCOME

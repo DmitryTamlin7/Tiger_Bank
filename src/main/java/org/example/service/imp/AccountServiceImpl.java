@@ -31,9 +31,14 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Operation createOperation(Long accountId, Long categoryId, BigDecimal amount, String description) {
+
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Сумма операции должна быть больше нуля! 🐯");
+        }
+
         BankAccount account = accountRepository.findById(accountId)
                 .orElseThrow(() -> new IllegalArgumentException("Такого счета нет"));
-        Category category = categoryRepository.findById(accountId)
+        Category category = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new IllegalArgumentException("Такой категории нет"));
 
         Operation operation = new Operation(
@@ -46,10 +51,14 @@ public class AccountServiceImpl implements AccountService {
                 description
         );
 
-        if (category.getOperationType() == OperationType.EXPENSE){
+        if (category.getOperationType() == OperationType.INCOME) {
+            account.setBalance(account.getBalance().add(amount));
+        } else {
+            if (account.getBalance().compareTo(amount) < 0) {
+                throw new RuntimeException("Недостаточно средств!");
+            }
             account.setBalance(account.getBalance().subtract(amount));
         }
-        else account.setBalance(account.getBalance().add(amount));
         accountRepository.save(account);
         return operationRepository.save(operation);
     }
@@ -70,7 +79,37 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.save(account);
 
         System.out.println("Баланс счета пересчитан " + calculateBalance);
+    }
 
+    @Override
+    public void deleteOperation(Long operationId) {
+        Operation op = operationRepository.findById(operationId).orElseThrow();
+        Long accId = op.getBankAccountId();
+        operationRepository.deleteById(operationId);
+        recalculateBalance(accId);
+    }
 
+    @Override
+    public void updateAccountName(Long id, String newName) {
+        BankAccount acc = accountRepository.findById(id).orElseThrow();
+        acc.setName(newName);
+        accountRepository.save(acc);
+    }
+
+    @Override
+    public void deleteAccount(Long id) {
+        operationRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteCategory(Long id) {
+        categoryRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateCategoryName(Long id, String newName) {
+        Category cat = categoryRepository.findById(id).orElseThrow();
+        cat.setName(newName);
+        categoryRepository.save(cat);
     }
 }

@@ -37,4 +37,9 @@ public class InMemoryBankAccountRepository implements BankAccountRepository {
     public void deleteById(Long id) {
         storage.remove(id);
     }
+
+    @Override
+    public void deleteAll() {
+        storage.clear();
+    }
 }

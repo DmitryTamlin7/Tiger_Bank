@@ -49,4 +49,9 @@ public class InMemoryOperationRepository implements OperationRepository {
                 .filter(o -> o.getBankAccountId().equals(account_id))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void deleteAll() {
+        storage.clear();
+    }
 }
