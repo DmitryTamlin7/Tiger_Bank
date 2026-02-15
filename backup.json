@@ -1,0 +1,21 @@
+{
+  "categories" : [ {
+    "id" : 1,
+    "operationType" : "INCOME",
+    "name" : "ааа"
+  } ],
+  "operations" : [ {
+    "id" : 1,
+    "bankAccountId" : 1,
+    "categoryId" : 1,
+    "operationType" : "INCOME",
+    "amount" : 550,
+    "date" : [ 2026, 2, 15, 18, 35, 49, 274377000 ],
+    "description" : "ккк"
+  } ],
+  "accounts" : [ {
+    "id" : 1,
+    "name" : "счет1",
+    "balance" : 661
+  } ]
+}
